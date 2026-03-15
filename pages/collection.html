@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection | ANR Silks & Shirts Kanchipuram</title>
+    <meta name="description" content="Explore ANR Silks' full collection — silk shirts, zari dhotis, vesti and bridal sets. Authentic Kanchipuram handloom. Silk Mark certified.">
+    <link rel="stylesheet" href="../shared.css">
+    <style>
+
+    /* ── Hero ── */
+    .collection-hero-wrap {
+        margin-top: var(--nav-h);
+        position: relative;
+        min-height: 55vh;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+    }
+    .collection-hero-wrap .hero-bg {
+        position: absolute; inset: 0;
+        background-image: url('../images/collection-banner.jpg');
+        background-size: cover; background-position: center;
+        transform: scale(1.08);
+        transition: transform 6s ease;
+    }
+    .collection-hero-wrap:hover .hero-bg { transform: scale(1.03); }
+    .collection-hero-wrap::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(
+            160deg,
+            rgba(13,27,42,0.82) 0%,
+            rgba(13,27,42,0.65) 50%,
+            rgba(13,27,42,0.78) 100%
+        );
+    }
+    .hero-content {
+        position: relative; z-index: 2;
+        text-align: center;
+        padding: 4rem 5%;
+        max-width: 800px;
+    }
+    .hero-eyebrow {
+        font-family: 'Jost', sans-serif;
+        font-size: 10px; font-weight: 600;
+        letter-spacing: 0.5em; text-transform: uppercase;
+        color: var(--gold);
+        display: flex; align-items: center; justify-content: center; gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+        content: ''; width: 40px; height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .hero-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+    .hero-content h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2.8rem, 7vw, 5rem);
+        color: var(--cream); line-height: 1.05;
+        font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .hero-content h1 em { font-style: italic; color: var(--gold-pale); font-weight: 400; }
+    .hero-content p {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        color: rgba(250,246,238,0.8);
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        line-height: 1.75; max-width: 580px; margin: 0 auto;
+    }
+    .hero-badge {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: rgba(201,168,76,0.12);
+        border: 1px solid rgba(201,168,76,0.3);
+        color: var(--gold-pale);
+        font-size: 9px; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase;
+        padding: 0.5rem 1.2rem; border-radius: 100px;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(8px);
+    }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+        display: flex; gap: 0.5rem; flex-wrap: wrap;
+        margin-bottom: 3.5rem; justify-content: center;
+    }
+    .filter-btn {
+        font-family: 'Jost', sans-serif;
+        font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+        padding: 0.65rem 1.5rem; border-radius: 100px; cursor: pointer;
+        border: 1px solid rgba(13,27,42,0.15);
+        background: transparent; color: var(--text-light);
+        transition: all 0.25s;
+    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active {
+        background: var(--navy); border-color: var(--navy);
+        color: var(--gold);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* ── Product Grid ── */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+    .product-card {
+        background: var(--ivory);
+        border: 1px solid rgba(201,168,76,0.1);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                    box-shadow 0.4s ease,
+                    border-color 0.3s;
+        cursor: pointer;
+    }
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(201,168,76,0.3);
+    }
+    .product-img {
+        aspect-ratio: 3/4; position: relative; overflow: hidden;
+        background: var(--silk-light);
+    }
+    .product-img img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+    .product-badge {
+        position: absolute; top: 1rem; left: 1rem;
+        background: var(--navy); color: var(--gold);
+        font-family: 'Jost', sans-serif;
+        font-size: 8px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+        padding: 0.3rem 0.8rem; border-radius: 100px; z-index: 5;
+        border: 1px solid rgba(201,168,76,0.3);
+    }
+    .product-body { padding: 1.4rem; }
+    .product-cat {
+        font-family: 'Jost', sans-serif;
+        font-size: 9px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+        color: var(--gold); display: block; margin-bottom: 0.5rem;
+    }
+    .product-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.15rem; font-weight: 600;
+        color: var(--text-dark); margin-bottom: 0.6rem;
+        line-height: 1.3;
+    }
+    .product-desc {
+        font-size: 0.8rem; color: var(--text-light);
+        line-height: 1.7; margin-bottom: 1.2rem;
+        font-weight: 300;
+    }
+    .product-cta {
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        font-family: 'Jost', sans-serif;
+        font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--navy); border-bottom: 1px solid var(--gold);
+        padding-bottom: 2px; transition: all 0.2s; text-decoration: none;
+    }
+    .product-cta:hover { color: var(--gold); gap: 0.7rem; }
+
+    /* ── Feature Band ── */
+    .feature-band {
+        background: var(--navy);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 4rem 4%;
+        margin-top: 5rem;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+        align-items: center;
+        position: relative; overflow: hidden;
+    }
+    .feature-band::before {
+        content: '';
+        position: absolute;
+        top: -50%; right: -10%;
+        width: 500px; height: 500px;
+        background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .feature-band .serif-title { color: var(--cream); }
+    .feature-band .serif-title em { color: var(--gold-pale); }
+    .feature-band p { color: rgba(250,246,238,0.65); font-weight: 300; margin-top: 0.8rem; font-size: 15px; line-height: 1.8; }
+    .fb-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fb-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(201,168,76,0.15);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    .fb-card:hover {
+        background: rgba(201,168,76,0.08);
+        border-color: rgba(201,168,76,0.3);
+        transform: translateY(-3px);
+    }
+    .fb-card-icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+    .fb-card-title {
+        font-family: 'Jost', sans-serif;
+        font-size: 11px; font-weight: 600;
+        letter-spacing: 0.1em; color: var(--gold-pale);
+    }
+
+    /* ── Care Strip ── */
+    .care-strip {
+        background: var(--navy-mid);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 3.5rem 4%;
+        display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+        margin-top: 2rem; text-align: center;
+        position: relative; overflow: hidden;
+    }
+    .care-strip::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .care-item-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .care-item-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.1rem; font-weight: 600;
+        color: var(--cream); margin-bottom: 0.5rem;
+    }
+    .care-item-text { font-size: 0.8rem; color: rgba(250,246,238,0.5); line-height: 1.7; font-weight: 300; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+        .product-grid { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 768px) {
+        .product-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+        .feature-band { grid-template-columns: 1fr; gap: 2.5rem; }
+        .care-strip { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+        .product-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+        .product-img { aspect-ratio: 4/3; }
+        .fb-right { grid-template-columns: 1fr; }
+        .care-strip { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="page-loader">
+    <div class="loader-inner">
+        <!-- Loader emblem -->
+		<div class="loader-emblem">
+			<img src="../Vel-hindu-outline.png" alt="Vel">
+		</div>
+        <div class="loader-brand">
+            <span class="loader-brand-name">ANR Silks &amp; Shirts</span>
+            <span class="loader-brand-sub">Kanchipuram — Est. 2011</span>
+        </div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar" id="loader-bar"></div>
+        </div>
+        <span class="loader-tagline">Weaving tradition since 2011…</span>
+    </div>
+</div>
+
+<!-- NAV -->
+<nav class="site-nav">
+    <a href="../index.html" class="nav-brand">
+		<!-- Nav emblem (pages/*.html — one level deep) -->
+		<div class="nav-emblem">
+			<img src="../Vel-hindu-outline.png" alt="Vel">
+		</div>
+        <div class="nav-brand-text">
+            <span class="nav-brand-name">ANR Silks &amp; Shirts</span>
+            <span class="nav-brand-sub">Kanchipuram — Est. 2011</span>
+        </div>
+    </a>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="collection.html" class="active">Collection</a>
+        <a href="heritage.html">Heritage</a>
+        <a href="wholesale.html">Wholesale</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://wa.me/919443329558" class="nav-cta">WhatsApp Enquiry</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+    <a href="../index.html">Home</a>
+    <a href="collection.html" class="active">Collection</a>
+    <a href="heritage.html">Heritage</a>
+    <a href="wholesale.html">Wholesale</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://wa.me/919443329558" class="drawer-cta">WhatsApp Enquiry →</a>
+</div>
+
+<!-- HERO -->
+<header class="collection-hero-wrap">
+    <div class="hero-bg"></div>
+    <div class="hero-content reveal">
+        <div class="hero-eyebrow">Silk Mark Certified</div>
+        <h1>Our <em>Collection</em></h1>
+        <p>Pure silk shirts, zari dhotis, and bridal vesti — each piece handwoven by master artisans and Silk Mark certified for authenticity.</p>
+    </div>
+</header>
+
+<!-- COLLECTION -->
+<section class="section-lg" style="background:var(--ivory);">
+    <div class="container">
+
+        <div class="filter-bar reveal">
+            <button class="filter-btn active" onclick="filterProducts('all',this)">All Pieces</button>
+            <button class="filter-btn" onclick="filterProducts('shirt',this)">Silk Shirts</button>
+            <button class="filter-btn" onclick="filterProducts('dhoti',this)">Dhotis &amp; Vesti</button>
+            <button class="filter-btn" onclick="filterProducts('bridal',this)">Bridal Sets</button>
+            <button class="filter-btn" onclick="filterProducts('festival',this)">Festival</button>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+
+            <div class="product-card reveal reveal-d1" data-cat="bridal shirt">
+                <div class="product-img">
+                    <div class="product-badge">Best Seller</div>
+                    <img src="../images/c1.jpg" alt="Ivory Wedding Silk Shirt">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Bridal ✦ Shirt</span>
+                    <div class="product-name">Ivory Wedding Silk Shirt</div>
+                    <p class="product-desc">Pure white mulberry silk, ideal for Muhurtham. High-density handloom weave with a natural ivory sheen.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d2" data-cat="shirt">
+                <div class="product-img">
+                    <img src="../images/c2.jpg" alt="Sandal Silk Shirt">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Classic ✦ Shirt</span>
+                    <div class="product-name">Sandal Silk Shirt</div>
+                    <p class="product-desc">Warm sandal tone handloom shirt with fine texture. Perfect for receptions and formal events.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d3" data-cat="dhoti">
+                <div class="product-img">
+                    <div class="product-badge">Heritage</div>
+                    <img src="../images/c3.jpg" alt="Pure Zari Dhoti">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Heritage ✦ Dhoti</span>
+                    <div class="product-name">Pure Zari Dhoti</div>
+                    <p class="product-desc">Traditional dhoti with genuine gold zari border. Woven over 3 days by master artisans in Kanchipuram.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d4" data-cat="festival dhoti">
+                <div class="product-img">
+                    <img src="../images/c4.jpg" alt="Peacock Vesti">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Festive ✦ Vesti</span>
+                    <div class="product-name">Peacock Vesti</div>
+                    <p class="product-desc">Bold peacock motif woven in zari gold on cream silk. A festival statement piece.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d1" data-cat="bridal dhoti">
+                <div class="product-img">
+                    <div class="product-badge">New Arrival</div>
+                    <img src="../images/c5.jpg" alt="Royal Cream Vesti">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Bridal ✦ Vesti</span>
+                    <div class="product-name">Royal Cream Vesti</div>
+                    <p class="product-desc">Cream base with ornate double-sided zari border. Pairs beautifully with the Ivory Wedding Shirt.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d2" data-cat="shirt">
+                <div class="product-img">
+                    <img src="../images/c6.jpg" alt="Off-White Linen Silk Shirt">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Classic ✦ Shirt</span>
+                    <div class="product-name">Off-White Linen Silk Shirt</div>
+                    <p class="product-desc">Light linen-silk blend for warm-weather comfort. Refined texture with subtle sheen.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d3" data-cat="bridal">
+                <div class="product-img">
+                    <div class="product-badge">Top Pick</div>
+                    <img src="../images/c7.jpg" alt="Full Muhurtham Bridal Set">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Bridal ✦ Set</span>
+                    <div class="product-name">Full Muhurtham Bridal Set</div>
+                    <p class="product-desc">Complete bridal set — ivory shirt, zari vesti, and angavastram. A complete groom's trousseau.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d4" data-cat="festival">
+                <div class="product-img">
+                    <img src="../images/c8.jpg" alt="Pongal Golden Dhoti">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Festival ✦ Dhoti</span>
+                    <div class="product-name">Pongal Golden Dhoti</div>
+                    <p class="product-desc">Vibrant gold-threaded dhoti designed for Pongal and Diwali celebrations. Rich and festive.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d1" data-cat="shirt">
+                <div class="product-img">
+                    <img src="../images/c9.jpg" alt="Pearl White Silk Shirt">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Premium ✦ Shirt</span>
+                    <div class="product-name">Pearl White Silk Shirt</div>
+                    <p class="product-desc">Extra-fine weave with a pearlescent surface. The choice of discerning grooms seeking subtle luxury.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d2" data-cat="dhoti">
+                <div class="product-img">
+                    <img src="../images/c10.jpg" alt="Temple Border Vesti">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Traditional ✦ Vesti</span>
+                    <div class="product-name">Temple Border Vesti</div>
+                    <p class="product-desc">Classic temple motif border in real zari. A staple for any South Indian wardrobe.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d3" data-cat="festival shirt">
+                <div class="product-img">
+                    <img src="../images/c11.jpg" alt="Saffron Silk Shirt">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Festival ✦ Shirt</span>
+                    <div class="product-name">Saffron Silk Shirt</div>
+                    <p class="product-desc">Warm saffron tone handloom shirt — a vibrant choice for Diwali and temple occasions.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal reveal-d4" data-cat="bridal">
+                <div class="product-img">
+                    <div class="product-badge">Exclusive</div>
+                    <img src="../images/c12.jpg" alt="Reception Silk Set">
+                </div>
+                <div class="product-body">
+                    <span class="product-cat">Exclusive ✦ Set</span>
+                    <div class="product-name">Reception Silk Set</div>
+                    <p class="product-desc">Elegant reception ensemble in coordinated tones. Silk shirt and matching vesti for the evening.</p>
+                    <a href="contact.html" class="product-cta">Enquire →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Feature Band -->
+        <div class="feature-band reveal">
+            <div>
+                <div class="tag-pill" style="color:var(--gold);">Wholesale Available</div>
+                <div class="gold-rule"></div>
+                <h2 class="serif-title">Looking for <em>Bulk</em> Orders?</h2>
+                <p>We supply retailers, wedding planners, and event companies across Tamil Nadu with direct-from-weaver pricing. No minimum too large.</p>
+                <a href="wholesale.html" class="btn btn-outline-gold" style="margin-top:1.8rem;">Learn About Wholesale →</a>
+            </div>
+            <div class="fb-right">
+                <div class="fb-card reveal reveal-d1"><div class="fb-card-icon">🏭</div><div class="fb-card-title">Direct Factory Pricing</div></div>
+                <div class="fb-card reveal reveal-d2"><div class="fb-card-icon">🚚</div><div class="fb-card-title">Pan-India Delivery</div></div>
+                <div class="fb-card reveal reveal-d3"><div class="fb-card-icon">🎨</div><div class="fb-card-title">Custom Designs</div></div>
+                <div class="fb-card reveal reveal-d4"><div class="fb-card-icon">✅</div><div class="fb-card-title">Silk Mark Certified</div></div>
+            </div>
+        </div>
+
+        <!-- Care Strip -->
+        <div class="care-strip reveal">
+            <div>
+                <div class="care-item-icon">🌊</div>
+                <div class="care-item-title">Dry Clean Only</div>
+                <p class="care-item-text">Always dry clean your silk garments to preserve the fibers and zari border.</p>
+            </div>
+            <div>
+                <div class="care-item-icon">☀️</div>
+                <div class="care-item-title">Shade Dry</div>
+                <p class="care-item-text">Never expose to direct sunlight when drying — always air in the shade.</p>
+            </div>
+            <div>
+                <div class="care-item-icon">🗂️</div>
+                <div class="care-item-title">Store Folded</div>
+                <p class="care-item-text">Fold and store in muslin cloth, away from moisture and perfumes.</p>
+            </div>
+            <div>
+                <div class="care-item-icon">♨️</div>
+                <div class="care-item-title">Steam Iron</div>
+                <p class="care-item-text">Use a steam iron on low heat from the inside to remove creases gently.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div>
+            <div class="footer-brand-name">ANR Silks &amp; Shirts</div>
+            <div class="footer-brand-sub">Kanchipuram — Established 2011</div>
+            <p class="footer-desc">Preserving the heritage of Kanchipuram silk weaving. Direct from loom to wardrobe — Silk Mark certified, authenticity always guaranteed.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Pages</h4>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="heritage.html">Heritage</a></li>
+                <li><a href="wholesale.html">Wholesale</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Collection</h4>
+            <ul>
+                <li><a href="collection.html">Silk Shirts</a></li>
+                <li><a href="collection.html">Zari Dhotis</a></li>
+                <li><a href="collection.html">Wedding Sets</a></li>
+                <li><a href="collection.html">Festival Wear</a></li>
+                <li><a href="collection.html">Vesti</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Visit Us</h4>
+            <p class="footer-contact-val">No. 4, First Street<br>M.M. Avenue<br>Kanchipuram – 631 501</p>
+            <p class="footer-contact-val" style="margin-top:0.8rem;"><a href="tel:+919443329558">+91 94433 29558</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2026 ANR Silks &amp; Shirts, Kanchipuram. All rights reserved.</p>
+        <div class="footer-badges">
+            <div class="foot-badge">Silk Mark Certified</div>
+            <div class="foot-badge">Handloom Authenticated</div>
+        </div>
+    </div>
+</footer>
+
+<script src="../shared.js"></script>
+<script>
+function filterProducts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+        const show = cat === 'all' || card.dataset.cat.includes(cat);
+        card.style.display = show ? '' : 'none';
+        if (show) {
+            card.style.animation = 'none';
+            card.offsetHeight;
+            card.style.animation = 'filterFadeIn 0.4s ease both';
+        }
+    });
+}
+</script>
+<style>
+@keyframes filterFadeIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+</style>
+</body>
+</html>

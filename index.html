@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANR Silks & Shirts | Authentic Kanchipuram Handloom</title>
+    <meta name="description" content="ANR Silks & Shirts — Authentic Kanchipuram handloom silk shirts, zari dhotis and vesti. Direct weaver to wardrobe. Silk Mark certified. Est. 2011.">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+    :root { --marquee-h: 38px; }
+
+    .marquee-bar { position: fixed !important; top: var(--nav-h) !important; left: 0; right: 0; z-index: 998; }
+
+    /* ── HERO ── */
+    #hero {
+        margin-top: calc(var(--nav-h) + var(--marquee-h));
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: 800px; overflow: hidden;
+    }
+    .hero-left {
+        background: var(--navy);
+        padding: 4rem 5% 4rem 6%;
+        display: flex; flex-direction: column; justify-content: center;
+        position: relative; overflow: hidden;
+    }
+    .hero-left::before {
+        content: '';
+        position: absolute; top: -20%; left: -10%;
+        width: 200%; height: 200%;
+        background: repeating-linear-gradient(-55deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px);
+        pointer-events: none;
+    }
+    .hero-left::after {
+        content: ''; position: absolute; top: 10%; bottom: 10%; right: 0;
+        width: 1px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); opacity: 0.3;
+    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.5rem; animation: fadeInUp 0.7s ease 3.2s both; }
+    .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+    .hero-eyebrow-text { font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); }
+    .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 70px); line-height: 1.05; color: var(--cream); margin-bottom: 1.2rem; font-weight: 600; animation: fadeInUp 0.8s ease 3.4s both; }
+    .hero-h1 em { display: block; font-style: italic; color: var(--gold-pale); font-weight: 400; }
+    .hero-h1 span { display: block; }
+    .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(14px, 1.3vw, 17px); font-style: italic; color: rgba(250,246,238,0.65); line-height: 1.85; max-width: 420px; margin-bottom: 2rem; animation: fadeInUp 0.8s ease 3.6s both; }
+    .hero-actions { display: flex; gap: 0.9rem; flex-wrap: nowrap; margin-bottom: 2.5rem; animation: fadeInUp 0.8s ease 3.8s both; }
+    .hero-stats { display: flex; gap: 2.5rem; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 1.8rem; flex-wrap: wrap; animation: fadeInUp 0.8s ease 4s both; }
+    .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-style: italic; color: var(--gold); line-height: 1; display: block; }
+    .hero-stat-label { font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; color: rgba(250,246,238,0.45); margin-top: 4px; }
+    .hero-right { position: relative; overflow: hidden; background: var(--navy-mid); }
+    .hero-right-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 8s ease; }
+    .hero-right:hover .hero-right-img { transform: scale(1.04); }
+    .hero-right-badge { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--gold); color: var(--navy); font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; padding: 7px 16px; border-radius: var(--radius); }
+    .hero-right::before { content: ''; position: absolute; inset: 1.2rem; border: 1px solid rgba(201,168,76,0.2); pointer-events: none; z-index: 2; border-radius: var(--radius); }
+
+    /* ── OCCASIONS ── */
+    #occasions { background: var(--ivory); padding: 7rem 5%; }
+    .occ-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+    .occ-card { background: var(--ivory); border: 1px solid rgba(201,168,76,0.1); border-radius: var(--radius); overflow: hidden; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s, border-color 0.3s; }
+    .occ-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.3); }
+    .occ-img { aspect-ratio: 3/4; position: relative; overflow: hidden; }
+    .occ-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .occ-card:hover .occ-img img { transform: scale(1.06); }
+    .occ-tag { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(13,27,42,0.85), transparent); padding: 2rem 1rem 0.9rem; font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); }
+    .occ-body { padding: 1.2rem 1.2rem 1.5rem; }
+    .occ-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--text-dark); margin-bottom: 5px; }
+    .occ-desc { font-size: 13px; color: var(--text-light); line-height: 1.7; font-weight: 300; }
+
+    /* ── GROOM'S ── */
+    #grooms { background: var(--navy); padding: 7rem 5%; }
+    .grooms-layout { display: grid; grid-template-columns: 1fr auto 1fr; gap: 3rem; align-items: center; }
+    .grooms-center-wrap { width: 290px; flex-shrink: 0; }
+    .grooms-center-img { width: 100%; aspect-ratio: 2/3; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.4); position: relative; }
+    .grooms-center-img::before { content: ''; position: absolute; inset: 0.8rem; border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius); z-index: 1; pointer-events: none; }
+    .grooms-center-img img { width: 100%; height: 100%; object-fit: cover; }
+    .grooms-side { display: flex; flex-direction: column; gap: 1.2rem; }
+    .gfc-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.12); border-radius: var(--radius); padding: 1.6rem; transition: all 0.3s; }
+    .gfc-card:hover { background: rgba(201,168,76,0.07); border-color: rgba(201,168,76,0.3); transform: translateX(4px); }
+    .grooms-side:last-child .gfc-card:hover { transform: translateX(-4px); }
+    .gfc-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .gfc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+    .gfc-desc { font-size: 13px; color: rgba(250,246,238,0.5); line-height: 1.75; font-weight: 300; }
+
+    /* ── PURITY ── */
+    #purity { background: var(--ivory); padding: 7rem 5%; }
+    .purity-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .purity-img-wrap { position: relative; padding-bottom: 2rem; padding-right: 2rem; }
+    .purity-img { width: 100%; aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(201,168,76,0.15); }
+    .purity-img img { width: 100%; height: 100%; object-fit: cover; }
+    .purity-badge { position: absolute; bottom: 0; right: 0; background: var(--navy); color: var(--cream); width: 110px; height: 110px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3px; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+    .purity-badge span:first-child { font-family: 'Jost', sans-serif; font-size: 8px; letter-spacing: 0.25em; font-weight: 700; text-transform: uppercase; color: var(--gold); }
+    .purity-badge span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: var(--cream); line-height: 1.3; }
+    .purity-points { margin-top: 2rem; }
+    .pp-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.1rem 0; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .pp-item:last-child { border-bottom: none; }
+    .pp-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-style: italic; color: rgba(201,168,76,0.25); line-height: 1; min-width: 36px; }
+    .pp-label { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 3px; }
+    .pp-text { font-size: 13px; color: var(--text-light); line-height: 1.7; font-weight: 300; }
+
+    /* ── COLLECTION PREVIEW ── */
+    #collection-preview { background: var(--warm-white); padding: 7rem 5%; }
+    .col-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: auto auto; gap: 1.2rem; }
+    .col-card { border-radius: var(--radius); overflow: hidden; position: relative; background: var(--navy-soft); border: 1px solid rgba(201,168,76,0.1); transition: all 0.4s; cursor: pointer; }
+    .col-card:hover { box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+    .col-card.featured { grid-row: span 2; }
+    .col-img { width: 100%; overflow: hidden; }
+    .col-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .col-card:hover .col-img img { transform: scale(1.05); }
+    .col-card.featured .col-img { aspect-ratio: 3/4; }
+    .col-img.ci2, .col-img.ci3, .col-img.ci4, .col-img.ci5 { aspect-ratio: 4/3; }
+    .col-label { padding: 0.9rem 1rem 0.8rem; background: var(--navy); }
+    .col-cat { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 3px; }
+    .col-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--cream); }
+
+    /* ── HERITAGE BAND ── */
+    #heritage-band { background: var(--navy-mid); padding: 7rem 5%; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    #heritage-band::before { content: ''; position: absolute; top: -50%; right: -5%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+    .heritage-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .heritage-quote { border-left: 2px solid var(--gold); padding: 1.2rem 1.8rem; background: rgba(201,168,76,0.05); margin: 1.8rem 0 2rem; border-radius: 0 var(--radius) var(--radius) 0; }
+    .heritage-quote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: rgba(250,246,238,0.75); line-height: 1.85; }
+    .heritage-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .hcard { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.12); border-radius: var(--radius); padding: 1.6rem; transition: all 0.3s; }
+    .hcard:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.25); transform: translateY(-3px); }
+    .hcard-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-style: italic; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+    .hcard-title { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--cream); margin-bottom: 5px; }
+    .hcard-text { font-size: 13px; color: rgba(250,246,238,0.45); line-height: 1.7; font-weight: 300; }
+
+    /* ── CTA BAND ── */
+    #cta-band { background: var(--ivory); padding: 7rem 5%; }
+    .cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .cta-store { background: var(--navy); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.2rem; position: relative; overflow: hidden; }
+    .cta-store::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .cta-store-row { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.4rem; }
+    .cta-store-row:last-child { margin-bottom: 0; }
+    .cta-store-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+    .cta-store-label { font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 3px; }
+    .cta-store-val { font-size: 14px; color: rgba(250,246,238,0.65); line-height: 1.6; font-weight: 300; }
+    .cta-store-val a { color: var(--gold-pale); font-weight: 500; }
+    .cta-buttons { display: flex; gap: 1rem; flex-wrap: nowrap; margin-top: 2rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+        .grooms-layout { grid-template-columns: 1fr 1fr; }
+        .grooms-center-wrap { display: none; }
+        .grooms-layout .grooms-side:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    }
+    @media (max-width: 900px) {
+        #hero { grid-template-columns: 1fr; min-height: auto; }
+        .hero-right { order: 1; height: 460px; }
+        .hero-left { order: 2; padding: 2.5rem 5%; }
+        .hero-left::after { display: none; }
+        .hero-actions { flex-wrap: wrap; }
+        .hero-actions .btn { flex: 1 1 calc(50% - 0.5rem); text-align: center; font-size: 10px !important; padding: 12px !important; }
+        .hero-stats { gap: 1.5rem; }
+        .occ-grid { grid-template-columns: 1fr 1fr; }
+        .occ-img { aspect-ratio: 4/3 !important; }
+        .purity-layout { grid-template-columns: 1fr; }
+        .purity-img-wrap { max-width: 440px; margin: 0 auto; }
+        .col-grid { grid-template-columns: 1fr 1fr; }
+        .col-card.featured { grid-row: span 1; }
+        .col-card.featured .col-img { aspect-ratio: 4/3; }
+        .heritage-inner { grid-template-columns: 1fr; gap: 3rem; }
+        .cta-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+        .cta-buttons { flex-wrap: wrap; }
+        .cta-buttons .btn { flex: 1 1 calc(50% - 0.5rem); text-align: center; }
+    }
+    @media (max-width: 600px) {
+        .hero-right { height: 380px; }
+        .hero-actions .btn { flex: 1 1 100%; }
+        .occ-grid { grid-template-columns: 1fr; }
+        .occ-img { aspect-ratio: 16/9 !important; }
+        .grooms-layout { grid-template-columns: 1fr; }
+        .grooms-layout .grooms-side:last-child { grid-column: 1; display: flex; flex-direction: column; }
+        .col-grid { grid-template-columns: 1fr; }
+        .heritage-cards { grid-template-columns: 1fr; }
+        .cta-buttons .btn { flex: 1 1 100%; }
+    }
+    </style>
+</head>
+<body>
+
+<div id="page-loader">
+    <div class="loader-inner">
+        <div class="loader-emblem">
+            <img src="Vel-hindu-outline.png" alt="Vel">
+        </div>
+        <div class="loader-brand">
+            <span class="loader-brand-name">ANR Silks &amp; Shirts</span>
+            <span class="loader-brand-sub">Kanchipuram — Est. 2011</span>
+        </div>
+        <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
+        <span class="loader-tagline">Weaving tradition since 2011…</span>
+    </div>
+</div>
+
+<nav class="site-nav">
+    <a href="index.html" class="nav-brand">
+        <!-- Nav emblem (index.html — root level) -->
+        <div class="nav-emblem">
+            <img src="Vel-hindu-outline.png" alt="Vel">
+        </div>
+        <div class="nav-brand-text">
+            <span class="nav-brand-name">ANR Silks &amp; Shirts</span>
+            <span class="nav-brand-sub">Kanchipuram — Est. 2011</span>
+        </div>
+    </a>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/collection.html">Collection</a>
+        <a href="pages/heritage.html">Heritage</a>
+        <a href="pages/wholesale.html">Wholesale</a>
+        <a href="pages/contact.html">Contact</a>
+        <a href="https://wa.me/919443329558" class="nav-cta">WhatsApp Enquiry</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer">
+    <a href="index.html" class="active">Home</a>
+    <a href="pages/collection.html">Collection</a>
+    <a href="pages/heritage.html">Heritage</a>
+    <a href="pages/wholesale.html">Wholesale</a>
+    <a href="pages/contact.html">Contact</a>
+    <a href="https://wa.me/919443329558" class="drawer-cta">WhatsApp Enquiry →</a>
+</div>
+
+<div class="marquee-bar">
+    <div class="marquee-track">
+        <span>Authentic Kanchipuram Silk</span><span class="m-sep"> ✦ </span>
+        <span>Silk Mark Certified</span><span class="m-sep"> ✦ </span>
+        <span>Direct from the Weaver</span><span class="m-sep"> ✦ </span>
+        <span>15 Years of Tradition</span><span class="m-sep"> ✦ </span>
+        <span>Wholesale &amp; Bulk Orders</span><span class="m-sep"> ✦ </span>
+        <span>Pure Zari Handloom</span><span class="m-sep"> ✦ </span>
+        <span>Kanchipuram – 631 501</span><span class="m-sep"> ✦ </span>
+        <span>Authentic Kanchipuram Silk</span><span class="m-sep"> ✦ </span>
+        <span>Silk Mark Certified</span><span class="m-sep"> ✦ </span>
+        <span>Direct from the Weaver</span><span class="m-sep"> ✦ </span>
+        <span>15 Years of Tradition</span><span class="m-sep"> ✦ </span>
+        <span>Wholesale &amp; Bulk Orders</span><span class="m-sep"> ✦ </span>
+        <span>Pure Zari Handloom</span><span class="m-sep"> ✦ </span>
+        <span>Kanchipuram – 631 501</span><span class="m-sep"> ✦ </span>
+    </div>
+</div>
+
+<section id="hero">
+    <div class="hero-left">
+        <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div><span class="hero-eyebrow-text">Direct Weaver to Wardrobe</span><div class="hero-eyebrow-line"></div></div>
+        <h1 class="hero-h1"><span>Authentic</span><em>Kanchipuram</em><span>Silk Mastery</span></h1>
+        <p class="hero-sub">Handwoven with centuries of tradition. Worn for moments that matter — weddings, festivals, and everything in between.</p>
+        <div class="hero-actions">
+            <a href="pages/collection.html" class="btn btn-gold btn-lg">Explore Collection</a>
+            <a href="pages/wholesale.html" class="btn btn-outline-gold btn-lg">Wholesale Enquiry</a>
+        </div>
+        <div class="hero-stats">
+            <div><span class="hero-stat-num">15+</span><div class="hero-stat-label">Years of Heritage</div></div>
+            <div><span class="hero-stat-num">100%</span><div class="hero-stat-label">Pure Silk Mark</div></div>
+            <div><span class="hero-stat-num">∞</span><div class="hero-stat-label">Patterns Available</div></div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <img src="images/1.jpg" alt="Kanchipuram Silk" class="hero-right-img">
+        <div class="hero-right-badge">Silk Mark Certified</div>
+    </div>
+</section>
+
+<section id="occasions">
+    <div class="container">
+        <div class="sec-head reveal"><div class="tag-pill">For Every Occasion</div><div class="gold-rule"></div><h2 class="serif-title">Perfect for Every <em>Celebration</em></h2></div>
+        <div class="occ-grid">
+            <div class="occ-card reveal reveal-d1"><div class="occ-img"><img src="images/7.jpg" alt="Wedding Silks"><div class="occ-tag">01 — Muhurtham</div></div><div class="occ-body"><div class="occ-name">Wedding Silks</div><p class="occ-desc">Pure White &amp; Cream pattu for the sacred wedding vows — timeless elegance.</p></div></div>
+            <div class="occ-card reveal reveal-d2"><div class="occ-img"><img src="images/8.jpg" alt="Evening Elegance"><div class="occ-tag">02 — Receptions</div></div><div class="occ-body"><div class="occ-name">Evening Elegance</div><p class="occ-desc">Refined Silk-Linen blends for an elegant evening look.</p></div></div>
+            <div class="occ-card reveal reveal-d3"><div class="occ-img"><img src="images/9.jpg" alt="Festival Vibrancy"><div class="occ-tag">03 — Festivals</div></div><div class="occ-body"><div class="occ-name">Festival Vibrancy</div><p class="occ-desc">Vibrant handloom zari dhotis to celebrate every tradition.</p></div></div>
+            <div class="occ-card reveal reveal-d4"><div class="occ-img"><img src="images/10.jpg" alt="Premium Gifts"><div class="occ-tag">04 — Gifting</div></div><div class="occ-body"><div class="occ-name">Premium Gifts</div><p class="occ-desc">Premium silk sets curated as thoughtful family gifts.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="grooms">
+    <div class="container">
+        <div class="sec-head center reveal"><div class="tag-pill" style="justify-content:center; color:var(--gold);">Exclusively for the Groom</div><div class="gold-rule center"></div><h2 class="serif-title" style="color:var(--cream);">The <em style="color:var(--gold-pale);">Groom's</em> Ritual</h2></div>
+        <div class="grooms-layout">
+            <div class="grooms-side">
+                <div class="gfc-card reveal reveal-d1"><div class="gfc-icon">👔</div><div class="gfc-title">Handloom Silk Shirts</div><p class="gfc-desc">High-density weave for a natural glow and superior comfort. Crafted for all-day celebration wear with no compromise.</p></div>
+                <div class="gfc-card reveal reveal-d2"><div class="gfc-icon">🎖️</div><div class="gfc-title">Golden Zari Vesti</div><p class="gfc-desc">Traditional dhotis featuring rich gold zari borders — the pinnacle of South Indian bridal fashion, perfected over generations.</p></div>
+            </div>
+            <div class="grooms-center-wrap"><div class="grooms-center-img reveal"><img src="images/11.jpg" alt="Groom's Collection"></div></div>
+            <div class="grooms-side">
+                <div class="gfc-card reveal reveal-d3"><div class="gfc-icon">📦</div><div class="gfc-title">Wholesale Supply</div><p class="gfc-desc">Direct manufacturer pricing for bulk retail. Trusted by hundreds of retailers across Tamil Nadu and beyond.</p></div>
+                <div class="gfc-card reveal reveal-d4"><div class="gfc-icon">🧵</div><div class="gfc-title">Custom Weaving</div><p class="gfc-desc">Request custom colours, patterns, and border designs for that unique, one-of-a-kind look tailored to your vision.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="purity">
+    <div class="container">
+        <div class="purity-layout">
+            <div class="purity-img-wrap reveal"><div class="purity-img"><img src="images/12.jpg" alt="Silk Purity"></div><div class="purity-badge"><span>Silk Mark</span><span>Certified ✓</span></div></div>
+            <div class="reveal reveal-d2">
+                <div class="tag-pill">Guaranteed Authenticity</div><div class="gold-rule"></div>
+                <h2 class="serif-title">The Purity <em>Promise</em></h2>
+                <p class="body-text" style="margin-top:1rem;">Every silk fiber is meticulously tested to ensure it is 100% natural. The <strong style="color:var(--text-dark); font-weight:600;">Silk Mark</strong> certification is your assurance of authentic luster, unmatched durability, and the true heritage of Kanchipuram weaving.</p>
+                <div class="purity-points">
+                    <div class="pp-item"><div class="pp-num">01</div><div><div class="pp-label">100% Natural Silk Fibers</div><p class="pp-text">Pure mulberry silk sourced from certified farms — maximum sheen, natural softness.</p></div></div>
+                    <div class="pp-item"><div class="pp-num">02</div><div><div class="pp-label">Genuine Zari Borders</div><p class="pp-text">Real gold-thread zari woven by hand — never printed, never duplicated.</p></div></div>
+                    <div class="pp-item"><div class="pp-num">03</div><div><div class="pp-label">Master Artisan Crafted</div><p class="pp-text">Each piece takes 2–7 days on the handloom, reflecting generations of inherited skill.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="collection-preview">
+    <div class="container">
+        <div class="sec-head reveal" style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2rem;">
+            <div><div class="tag-pill">Curated Pieces</div><div class="gold-rule"></div><h2 class="serif-title">Signature <em>Collection</em></h2></div>
+            <a href="pages/collection.html" class="btn btn-outline-gold" style="flex-shrink:0;">View All →</a>
+        </div>
+        <div class="col-grid">
+            <div class="col-card featured reveal reveal-d1"><div class="col-img"><img src="images/2.jpg" alt="Ivory Wedding Silk Shirt"></div><div class="col-label"><span class="col-cat">Featured ✦ Bridal</span><div class="col-name">Ivory Wedding Silk Shirt</div></div></div>
+            <div class="col-card reveal reveal-d2"><div class="col-img ci2"><img src="images/3.jpg" alt="Sandal Silk Shirt"></div><div class="col-label"><span class="col-cat">Classic</span><div class="col-name">Sandal Silk Shirt</div></div></div>
+            <div class="col-card reveal reveal-d3"><div class="col-img ci3"><img src="images/4.jpg" alt="Pure Zari Dhoti"></div><div class="col-label"><span class="col-cat">Heritage</span><div class="col-name">Pure Zari Dhoti</div></div></div>
+            <div class="col-card reveal reveal-d4"><div class="col-img ci4"><img src="images/5.jpg" alt="Peacock Vesti"></div><div class="col-label"><span class="col-cat">Festive</span><div class="col-name">Peacock Vesti</div></div></div>
+            <div class="col-card reveal reveal-d4"><div class="col-img ci5"><img src="images/6.jpg" alt="Royal Cream Vesti"></div><div class="col-label"><span class="col-cat">Wedding</span><div class="col-name">Royal Cream Vesti</div></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="heritage-band">
+    <div class="container">
+        <div class="heritage-inner">
+            <div class="reveal">
+                <div class="tag-pill" style="color:var(--gold);">Our Story</div><div class="gold-rule"></div>
+                <h2 class="serif-title" style="color:var(--cream);">15 Years of <em style="color:var(--gold-pale);">Tradition</em></h2>
+                <div class="heritage-quote"><p>"Based in the heart of Kanchipuram, ANR Silks has spent over a decade perfecting the art of the handloom. We are a family of weavers dedicated to the elegance of the South Indian groom."</p></div>
+                <a href="pages/heritage.html" class="btn btn-outline-gold">Read Our Story →</a>
+            </div>
+            <div class="heritage-cards reveal reveal-d2">
+                <div class="hcard"><div class="hcard-num">15+</div><div class="hcard-title">Years of Heritage</div><p class="hcard-text">Perfecting the handloom craft since 2011 in the silk capital of India.</p></div>
+                <div class="hcard"><div class="hcard-num">∞</div><div class="hcard-title">Patterns Woven</div><p class="hcard-text">Countless designs across silk, linen-silk blends and pure zari.</p></div>
+                <div class="hcard"><div class="hcard-num">100%</div><div class="hcard-title">Pure Authenticity</div><p class="hcard-text">Silk Mark certified — a guarantee of natural, tested fibers.</p></div>
+                <div class="hcard"><div class="hcard-num">1st</div><div class="hcard-title">Direct from Loom</div><p class="hcard-text">No middlemen. From our weavers directly to your wardrobe.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cta-band">
+    <div class="container">
+        <div class="cta-inner">
+            <div class="reveal">
+                <div class="tag-pill">Visit or Call Us</div><div class="gold-rule"></div>
+                <h2 class="serif-title">Get in <em>Touch</em></h2>
+                <p class="body-text" style="margin:1rem 0 0;">Whether you're a bride's family, a groom planning his look, or a retailer seeking wholesale partnership — we'd love to hear from you.</p>
+                <div class="cta-buttons">
+                    <a href="pages/contact.html" class="btn btn-gold">Make an Enquiry</a>
+                    <a href="pages/wholesale.html" class="btn btn-outline-gold">Wholesale →</a>
+                </div>
+            </div>
+            <div class="cta-store reveal reveal-d2">
+                <div class="cta-store-row"><div class="cta-store-icon">📍</div><div><span class="cta-store-label">Our Store</span><div class="cta-store-val">No. 4, First Street, M.M. Avenue,<br>Kanchipuram – 631 501</div></div></div>
+                <div class="cta-store-row"><div class="cta-store-icon">📞</div><div><span class="cta-store-label">Call / WhatsApp</span><div class="cta-store-val"><a href="tel:+919443329558">+91 94433 29558</a></div></div></div>
+                <div class="cta-store-row"><div class="cta-store-icon">🕐</div><div><span class="cta-store-label">Store Hours</span><div class="cta-store-val">Mon – Sat: 9 AM – 8 PM<br>Sunday: 10 AM – 6 PM</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div><div class="footer-brand-name">ANR Silks &amp; Shirts</div><div class="footer-brand-sub">Kanchipuram — Established 2011</div><p class="footer-desc">Preserving the heritage of Kanchipuram silk weaving. Direct from loom to wardrobe — Silk Mark certified, authenticity always guaranteed.</p></div>
+        <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="pages/collection.html">Collection</a></li><li><a href="pages/heritage.html">Heritage</a></li><li><a href="pages/wholesale.html">Wholesale</a></li><li><a href="pages/contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Collection</h4><ul><li><a href="pages/collection.html">Silk Shirts</a></li><li><a href="pages/collection.html">Zari Dhotis</a></li><li><a href="pages/collection.html">Wedding Sets</a></li><li><a href="pages/collection.html">Festival Wear</a></li><li><a href="pages/collection.html">Vesti</a></li></ul></div>
+        <div class="footer-col"><h4>Visit Us</h4><p class="footer-contact-val">No. 4, First Street<br>M.M. Avenue<br>Kanchipuram – 631 501</p><p class="footer-contact-val" style="margin-top:0.8rem;"><a href="tel:+919443329558">+91 94433 29558</a></p></div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2026 ANR Silks &amp; Shirts, Kanchipuram. All rights reserved.</p>
+        <div class="footer-badges"><div class="foot-badge">Silk Mark Certified</div><div class="foot-badge">Handloom Authenticated</div></div>
+    </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>
